@@ -57,6 +57,7 @@ defmodule SproutDocs.MixProject do
   defp aliases do
     [
       setup: ["deps.get"],
+      "assets.setup": ["cmd --cd assets npm install"],
       "assets.deploy": ["tailwind default --minify", "esbuild default --minify", "phx.digest"]
     ]
   end
