@@ -11,8 +11,89 @@ defmodule SproutDocsWeb.CoreComponents do
   """
   use Phoenix.Component
 
+  alias SproutDocsWeb.Icons
   alias Phoenix.LiveView.JS
   import SproutDocsWeb.Gettext
+
+  attr :class, :string, default: ""
+
+  def theme_toggle(assigns) do
+    ~H"""
+    <button
+      is="theme-toggle"
+      class={[
+        @class,
+        "block text-slate-500 dark:text-neutral-500 hover:text-slate-600 dark:hover:text-neutral-400 transition-colors duration-200"
+      ]}
+    >
+      <span class="sr-only">theme toggle</span>
+      <span class="hidden dark:inline">
+        <Heroicons.sun mini class="w-6 h-6" />
+      </span>
+      <span class="dark:hidden inline">
+        <Heroicons.moon mini class="w-6 h-6" />
+      </span>
+    </button>
+    """
+  end
+
+  attr :class, :string, default: ""
+
+  def header(assigns) do
+    navigations = [
+      %{name: "Documentation", route: "/docs"}
+    ]
+
+    assigns = assign(assigns, navigations: navigations)
+
+    # [
+    #   "sticky top-0 w-full flex-none z-50",
+    #   "bg-white/95 dark:bg-neutral-800/75 border-b border-slate-900/10 dark:border-neutral-50/[0.06]",
+    #   "backdrop-blur"
+    # ]
+
+    ~H"""
+    <header class={@class}>
+      <div class="mx-auto">
+        <div class="px-4 md:px-12 py-4">
+          <div class="relative flex items-center justify-between">
+            <.link href="/" class="flex-none">
+              <span class="sr-only">Sprout UI home page</span>
+              <Icons.sprout_ui_logo
+                class="w-auto h-5 md:h-8 text-slate-900 dark:text-white"
+                aria-hidden="true"
+              />
+            </.link>
+
+            <div class="hidden md:flex items-center">
+              <nav class="text-sm font-semibold hover:text-emerald-500 transition-colors duration-200">
+                <ul class="flex space-x-8">
+                  <li :for={navigation <- @navigations}>
+                    <.link href={navigation.route}><%= navigation.name %></.link>
+                  </li>
+                </ul>
+              </nav>
+              <div class="flex items-center ml-6 pl-6 border-l border-slate-200 dark:border-neutral-500">
+                <.link
+                  href="https://github.com/TunkShif/sprout_ui"
+                  class="block text-slate-500 dark:text-neutral-500 hover:text-slate-600 dark:hover:text-neutral-400 transition-colors duration-200"
+                >
+                  <span class="sr-only">Sprout UI repository on GitHub</span>
+                  <Icons.github class="w-5 h-5" aria-hidden="true" />
+                </.link>
+                <.theme_toggle class="ml-4" />
+              </div>
+            </div>
+
+            <div class="md:hidden flex items-center">
+              <.theme_toggle />
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+    """
+  end
 
   @doc """
   Renders a modal.

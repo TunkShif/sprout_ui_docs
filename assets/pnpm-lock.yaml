@@ -1,12 +1,12 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@tunkshif/live-element': ^0.0.3
+  '@tunkshif/live-element': ^0.1.1
   prettier: ^2.8.0
   typescript: ^4.9.3
 
 dependencies:
-  '@tunkshif/live-element': 0.0.3
+  '@tunkshif/live-element': 0.1.1
 
 devDependencies:
   prettier: 2.8.0
@@ -14,8 +14,8 @@ devDependencies:
 
 packages:
 
-  /@tunkshif/live-element/0.0.3:
-    resolution: {integrity: sha512-TmzFHv8o4sHXf/jxrlI2oxtgJI5Zc6a8ICV47DgEIewy8MrL5J9lUhIv0JeaseH4AXSt3ctEtjoMEv54MBZigw==}
+  /@tunkshif/live-element/0.1.1:
+    resolution: {integrity: sha512-oGN0negpMjD4ZMJTinQj6LHaESha83KIsKcBj4E9CgboOJwa6mJNdtSZOYdXVpMxnC5nZojvXokcL29mSMk65w==}
     dev: false
 
   /prettier/2.8.0:
