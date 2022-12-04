@@ -3,10 +3,12 @@ lockfileVersion: 5.4
 specifiers:
   '@tunkshif/live-element': ^0.1.1
   prettier: ^2.8.0
+  sprout-ui: ../deps/sprout_ui/
   typescript: ^4.9.3
 
 dependencies:
   '@tunkshif/live-element': 0.1.1
+  sprout-ui: link:../deps/sprout_ui
 
 devDependencies:
   prettier: 2.8.0

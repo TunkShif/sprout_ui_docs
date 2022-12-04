@@ -4,6 +4,7 @@
 		"typescript": "^4.9.3"
 	},
 	"dependencies": {
-		"@tunkshif/live-element": "^0.1.1"
+		"@tunkshif/live-element": "^0.1.1",
+    "sprout-ui": "../deps/sprout_ui/"
 	}
 }

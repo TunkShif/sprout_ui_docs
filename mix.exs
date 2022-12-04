@@ -45,6 +45,9 @@ defmodule SproutDocs.MixProject do
       {:gettext, "~> 0.20"},
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
+      {:makeup, "~> 1.1.0"},
+      {:makeup_elixir, "~> 0.16.0"},
+      {:makeup_eex, "~> 0.1.0"},
       {:sprout_ui, git: "https://github.com/TunkShif/sprout_ui"}
     ]
   end

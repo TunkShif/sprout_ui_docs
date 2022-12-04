@@ -95,6 +95,20 @@ defmodule SproutDocsWeb.CoreComponents do
     """
   end
 
+  attr :key, :string
+
+  def kbd(assigns) do
+    assigns =
+      assign(assigns,
+        class:
+          "text-sm font-semibold bg-gray-200 dark:bg-neutral-700 border-gray-300 dark:border-neutral-600 border-l border-r border-b-[3px] rounded-md leading-normal"
+      )
+
+    ~H"""
+    <kbd class={@class} style="padding-inline: 5px;"><%= @key %></kbd>
+    """
+  end
+
   @doc """
   Renders a modal.
 
