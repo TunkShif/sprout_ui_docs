@@ -3,3 +3,14 @@
 @import "tailwindcss/utilities";
 
 @import "./makeup-onedark.css";
+
+kbd {
+  @apply text-sm font-semibold bg-gray-200 dark:bg-neutral-700 border-gray-300 dark:border-neutral-600 border-l border-r border-b-[3px] rounded-md leading-normal;
+  padding-inline: 5px;
+}
+
+code.inline {
+  @apply bg-gray-200 dark:bg-neutral-700 rounded-md;
+  padding-inline: 5px;
+}
+

@@ -2,10 +2,10 @@ import "phoenix_html"
 import { Socket } from "phoenix"
 import { LiveSocket } from "phoenix_live_view"
 import topbar from "../vendor/topbar"
-import { createSproutConfig, Collapsible, Accordion } from "sprout-ui"
+import { createSproutConfig, Collapsible, Accordion, Switch } from "sprout-ui"
 
 const { initComponents, handleDomChange } = createSproutConfig({
-  components: [Collapsible(), Accordion()]
+  components: [Collapsible(), Accordion(), Switch()]
 })
 
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")

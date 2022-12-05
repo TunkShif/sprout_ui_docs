@@ -1,13 +1,6 @@
 defmodule SproutDocsWeb.CoreComponents do
   @moduledoc """
   Provides core UI components.
-
-  The components in this module use Tailwind CSS, a utility-first CSS framework.
-  See the [Tailwind CSS documentation](https://tailwindcss.com) to learn how to
-  customize the generated components in this module.
-
-  Icons are provided by [heroicons](https://heroicons.com), using the
-  [heroicons_elixir](https://github.com/mveytsman/heroicons_elixir) project.
   """
   use Phoenix.Component
 
@@ -95,17 +88,38 @@ defmodule SproutDocsWeb.CoreComponents do
     """
   end
 
-  attr :key, :string
-
-  def kbd(assigns) do
-    assigns =
-      assign(assigns,
-        class:
-          "text-sm font-semibold bg-gray-200 dark:bg-neutral-700 border-gray-300 dark:border-neutral-600 border-l border-r border-b-[3px] rounded-md leading-normal"
-      )
-
+  def footer(assigns) do
     ~H"""
-    <kbd class={@class} style="padding-inline: 5px;"><%= @key %></kbd>
+    <footer class="my-12">
+      <div>
+        <div class="text-xs text-center text-slate-500 dark:text-neutral-400">
+          Built by <a href="https://tunkshif.one" class="underline">Tristan Yang</a>
+        </div>
+        <div class="mt-6 flex justify-center items-center space-x-8">
+          <a
+            href="https://github.com/TunkShif"
+            class="block text-slate-500 dark:text-neutral-500 hover:text-slate-600 dark:hover:text-neutral-400 transition-colors duration-200"
+          >
+            <span class="sr-only">link to github profile</span>
+            <Icons.github class="w-5 h-5" />
+          </a>
+          <a
+            href="https://twitter.com/TunkShif"
+            class="block text-slate-500 dark:text-neutral-500 hover:text-slate-600 dark:hover:text-neutral-400 transition-colors duration-200"
+          >
+            <span class="sr-only">link to twitter page</span>
+            <Icons.twitter class="w-5 h-5" />
+          </a>
+          <a
+            href="mailto:tunkshfi@foxmail.com"
+            class="block text-slate-500 dark:text-neutral-500 hover:text-slate-600 dark:hover:text-neutral-400 transition-colors duration-200"
+          >
+            <span class="sr-only">link to email</span>
+            <Heroicons.envelope solid class="w-5 h-5" />
+          </a>
+        </div>
+      </div>
+    </footer>
     """
   end
 

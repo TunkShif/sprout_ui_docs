@@ -1,7 +1,7 @@
 defmodule SproutDocsWeb.PageHTML do
   use SproutDocsWeb, :html
 
-  alias SproutUI.Display
+  alias SproutUI.{Display, Input}
   alias SproutDocsWeb.{Icons, Code}
 
   import Phoenix.HTML, only: [raw: 1]
@@ -11,7 +11,7 @@ defmodule SproutDocsWeb.PageHTML do
     <main>
       <.hero_section />
 
-      <div class="my-20 md:my-24 space-y-20">
+      <div class="my-20 md:my-24 space-y-24">
         <.feature_section>
           <:icon>
             <Heroicons.cube solid class="w-6 h-6 text-white" />
@@ -31,7 +31,7 @@ defmodule SproutDocsWeb.PageHTML do
             You can see the flexibility of renderless component from the example code.
           </:description>
           <:content>
-            <.code_example />
+            <.code_example code="dialog" />
           </:content>
         </.feature_section>
 
@@ -49,16 +49,40 @@ defmodule SproutDocsWeb.PageHTML do
             </a>
             to create accessible web experiences.
             It fully supports assistive technology like screen readers and keyboard navigations.
-            Try using <.kbd key="Up" /> <.kbd key="Down" /> <.kbd key="Home" /> <.kbd key="End" />
-            to navigate through the accordion items and using <.kbd key="Enter" /> or
-            <.kbd key="Space" /> to expand/collapse the item.
+            Try using <kbd>Up</kbd> <kbd>Down</kbd> <kbd>Home</kbd> <kbd>End</kbd>
+            to navigate through the accordion items and using <kbd>Enter</kbd>
+            or <kbd>Space</kbd>
+            to expand/collapse the item.
           </:description>
           <:content>
             <.accordion_example />
           </:content>
         </.feature_section>
+
+        <.feature_section>
+          <:icon>
+            <Heroicons.swatch solid class="w-6 h-6 text-white" />
+          </:icon>
+          <:title>Styling components made easy</:title>
+          <:description>
+            Since you're in control of rendering all the HTML tags,
+            you can choose whatever styling methods you like.
+            Every component is composed of different parts rendered with a
+            <code class="inline">data-part</code>
+            attribute that you can style each part using CSS atribute selector.
+            And when a component can have multiple UI states,
+            these states are also presented with a <code class="inline">data-state</code>
+            attribute. Sprout UI also comes with a tailwindcss plugin that makes it easier to styling different UI states.
+          </:description>
+          <:content>
+            <.switch_example />
+            <.code_example code="switch" class="mt-4" />
+          </:content>
+        </.feature_section>
       </div>
     </main>
+
+    <.footer />
     """
   end
 
@@ -182,11 +206,36 @@ defmodule SproutDocsWeb.PageHTML do
   </Overlay.dialog>
   """
 
+  @switch_example_code ~S"""
+  <Input.switch :let={api}>
+    <button
+      class="ui-checked:bg-emerald-500 ui-unchecked:bg-gray-200"
+      {api.track_attrs}
+    >
+      <span
+        class="ui-unchecked:translate-x-[3px] ui-checked:translate-x-[33px]"
+        {api.thumb_attrs}
+      >
+      </span>
+    </button>
+  </Input.switch>
+  """
+
+  attr :code, :string, values: ["dialog", "switch"]
+  attr :rest, :global
+
   defp code_example(assigns) do
-    assigns = assign(assigns, source: @dialog_example_code)
+    assigns =
+      assign(assigns,
+        source:
+          case assigns.code do
+            "dialog" -> @dialog_example_code
+            "switch" -> @switch_example_code
+          end
+      )
 
     ~H"""
-    <Code.plain source={@source} language="heex" />
+    <Code.plain source={@source} language="heex" {@rest} />
     """
   end
 
@@ -257,6 +306,37 @@ defmodule SproutDocsWeb.PageHTML do
           </div>
         </div>
       </Display.accordion>
+    </div>
+    """
+  end
+
+  defp switch_example(assigns) do
+    ~H"""
+    <div class="flex justify-center">
+      <Input.switch :let={api}>
+        <button
+          class={[
+            "relative shrink-0 inline-flex items-center h-[36px] w-[66px]",
+            "rounded-full border ui-unchecked:border-gray-300 dark:border-transparent",
+            "transition-colors duration-200 ease-in-out",
+            "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-emerald-500/80 dark:focus-visible:ring-offset-neutral-800",
+            "ui-checked:bg-emerald-500 ui-unchecked:bg-gray-200 dark:ui-unchecked:bg-neutral-700"
+          ]}
+          {api.track_attrs}
+        >
+          <span class="sr-only">a toggle for demonstration</span>
+          <span
+            class={[
+              "inline-block h-[28px] w-[28px]",
+              "transform rounded-full bg-white shadow-lg ring-0",
+              "transition duration-200 ease-in-out",
+              "ui-checked:translate-x-[33px] ui-unchecked:translate-x-[3px]"
+            ]}
+            {api.thumb_attrs}
+          >
+          </span>
+        </button>
+      </Input.switch>
     </div>
     """
   end
