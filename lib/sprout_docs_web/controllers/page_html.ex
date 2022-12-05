@@ -11,58 +11,60 @@ defmodule SproutDocsWeb.PageHTML do
     <main>
       <.hero_section />
 
-      <.feature_section>
-        <:icon>
-          <Heroicons.cube solid class="w-6 h-6 text-white" />
-        </:icon>
-        <:title>
-          Renderless function components
-        </:title>
-        <:description>
-          Sprout UI component does not render any visible HTML tags.
-          It only controls user interactions and related UI states with an underlying <a
-            href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements"
-            target="_blank"
-            class="underline"
-          >custom element</a>.
-          It is your responsibility to decide how to render the component,
-          and all you need to do is just passing attributes to the tags you're rendering.
-          You can see the flexibility of renderless component from the example code.
-        </:description>
-        <:content>
-          <.code_example />
-        </:content>
-      </.feature_section>
+      <div class="my-20 md:my-24 space-y-20">
+        <.feature_section>
+          <:icon>
+            <Heroicons.cube solid class="w-6 h-6 text-white" />
+          </:icon>
+          <:title>
+            Renderless function components
+          </:title>
+          <:description>
+            Sprout UI component does not render any visible HTML tags.
+            It only controls user interactions and related UI states with an underlying <a
+              href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements"
+              target="_blank"
+              class="underline"
+            >custom element</a>.
+            It is your responsibility to decide how to render the component,
+            and all you need to do is just passing attributes to the tags you're rendering.
+            You can see the flexibility of renderless component from the example code.
+          </:description>
+          <:content>
+            <.code_example />
+          </:content>
+        </.feature_section>
 
-      <.feature_section reverse>
-        <:icon>
-          <Heroicons.lifebuoy solid class="w-6 h-6 text-white" />
-        </:icon>
-        <:title>
-          WAI-ARIA compliant components
-        </:title>
-        <:description>
-          Sprout UI follows the
-          <a href="https://www.w3.org/WAI/ARIA/apg/" target="_blank" class="underline">
-            WAI-ARIA guide
-          </a>
-          to create accessible web experiences.
-          It fully supports assistive technology like screen readers and keyboard navigations.
-          Try using <.kbd key="Up" /> <.kbd key="Down" /> <.kbd key="Home" /> <.kbd key="End" />
-          to navigate through the accordion items and using <.kbd key="Enter" /> or
-          <.kbd key="Space" /> to expand/collapse the item.
-        </:description>
-        <:content>
-          <.accordion_example />
-        </:content>
-      </.feature_section>
+        <.feature_section reverse>
+          <:icon>
+            <Heroicons.lifebuoy solid class="w-6 h-6 text-white" />
+          </:icon>
+          <:title>
+            WAI-ARIA compliant components
+          </:title>
+          <:description>
+            Sprout UI follows the
+            <a href="https://www.w3.org/WAI/ARIA/apg/" target="_blank" class="underline">
+              WAI-ARIA guide
+            </a>
+            to create accessible web experiences.
+            It fully supports assistive technology like screen readers and keyboard navigations.
+            Try using <.kbd key="Up" /> <.kbd key="Down" /> <.kbd key="Home" /> <.kbd key="End" />
+            to navigate through the accordion items and using <.kbd key="Enter" /> or
+            <.kbd key="Space" /> to expand/collapse the item.
+          </:description>
+          <:content>
+            <.accordion_example />
+          </:content>
+        </.feature_section>
+      </div>
     </main>
     """
   end
 
   defp hero_section(assigns) do
     ~H"""
-    <section class="relative">
+    <div class="relative">
       <div class={[
         "absolute inset-0",
         "bg-[linear-gradient(5deg,#f7fee7_0%,#ffffff_100%)] dark:bg-[linear-gradient(5deg,#1c1917_0%,rgba(38,38,38,0.75)_100%)]",
@@ -123,7 +125,7 @@ defmodule SproutDocsWeb.PageHTML do
           </div>
         </div>
       </section>
-    </section>
+    </div>
     """
   end
 
@@ -136,9 +138,9 @@ defmodule SproutDocsWeb.PageHTML do
   defp feature_section(assigns) do
     ~H"""
     <section>
-      <div class="px-8 md:px-12 py-20 md:py-24">
+      <div class="px-8 md:px-12 ">
         <div class="mx-auto max-w-6xl">
-          <div class="grid lg:grid-cols-2 gap-12">
+          <div class="flex flex-col lg:grid lg:grid-cols-2 gap-12">
             <div>
               <div class="flex flex-col lg:flex-row lg:items-center">
                 <span class="flex shrink-0 justify-center items-center w-12 h-12 shadow-md shadow-sky-400/40 rounded-md bg-[linear-gradient(120deg,#84fab0_0%,#8fd3f4_100%)]">
@@ -191,20 +193,30 @@ defmodule SproutDocsWeb.PageHTML do
   defp accordion_example(assigns) do
     items = [
       %{
-        title: "Change",
-        content: ~S"""
-        There's somethin' in the wind, I can feel it blowin' in<br>
-        It's comin' in softly on the wings of a bomb<br>
-        There's somethin' in the wind, I can feel it blowin' in<br>
-        It's comin' in hotly and it's coming in strong<br>
-        """
-      },
-      %{
         title: "Mariners Apartment Complex",
         content: ~S"""
         You lose your way, just take my hand<br>
         You're lost at sea, then I'll command your boat to me again<br>
         Don't look too far, right where you are, that's where I am<br>
+        """
+      },
+      %{
+        title: "Stonemilker",
+        content: ~S"""
+        A juxtapositioning fate<br>
+        Find our mutual coordinates<br>
+        Moments of clarity are so rare<br>
+        I better document this<br>
+        At last the view is fierce<br>
+        """
+      },
+      %{
+        title: "青春",
+        content: ~S"""
+        给我一点遗憾　让我学学咏叹<br>
+        给我一点灵感　抱怨这时代<br>
+        我随风摇摆　我无聊自在<br>
+        给我一点迷幻　借机使坏<br>
         """
       }
     ]
@@ -212,40 +224,40 @@ defmodule SproutDocsWeb.PageHTML do
     assigns = assign(assigns, items: items)
 
     ~H"""
-    <Display.accordion :let={api} items={@items}>
-      <div :for={item <- api.items} class="group" {item.container_attrs}>
-        <h3>
-          <button
-            class={[
-              "flex items-center justify-between w-full p-4",
-              "ui-open:font-medium text-left ui-open:text-emerald-500",
-              "focus:bg-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800",
-              "border border-b-0 group-last:border-b group-first:rounded-t-md group-last:ui-closed:rounded-b-md",
-              "border-gray-200 dark:border-gray-700",
-              "focus:outline-none focus-visible:ring-2 focus-visible:ring-gray-200 dark:focus-visible:ring-gray-800"
-            ]}
-            {item.trigger_attrs}
-          >
-            <span><%= item.title %></span>
-            <Heroicons.chevron_down class="w-5 h-5 ui-open:rotate-180 shrink-0 transition duration-300" />
-          </button>
-        </h3>
+    <div class="">
+      <Display.accordion :let={api} items={@items}>
         <div
-          class={[
-            "font-light border border-b-0 group-last:border-b border-gray-200 dark:border-gray-700 dark:bg-gray-900 overflow-hidden",
-            "transition-[height] duration-300 ease-in-out"
-          ]}
-          data-transition
-          data-enter-from="h-0"
-          data-enter-to="h-[var(--panel-height)]"
-          data-leave-from="h-[var(--panel-height)]"
-          data-leave-to="h-0"
-          {item.panel_attrs}
+          :for={item <- api.items}
+          class="border-2 border-b-0 dark:border-neutral-500 last:border-b-2 first:rounded-t-lg last:rounded-b-lg"
+          {item.container_attrs}
         >
-          <p class="p-5 text-gray-500 dark:text-gray-400"><%= raw(item.content) %></p>
+          <h3>
+            <button
+              class={[
+                "flex items-center justify-between w-full p-4 text-left",
+                "ui-open:text-emerald-500 dark:ui-open:text-emerald-600 transition-colors",
+                "ui-open:border-b-2 dark:border-neutral-500",
+                "focus:bg-gray-100 hover:bg-gray-100 dark:focus:bg-neutral-700 dark:hover:bg-neutral-700",
+                "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-400 focus-visible:rounded-lg",
+                "dark:focus-visible:ring-neutral-900 dark:focus-visible:ring-offset-neutral-800"
+              ]}
+              {item.trigger_attrs}
+            >
+              <span><%= item.title %></span>
+              <Heroicons.chevron_down class="w-5 h-5 ui-open:rotate-180 shrink-0 transition duration-300" />
+            </button>
+          </h3>
+          <div
+            class="overflow-hidden ui-open:animate-slide-down ui-closed:animate-slide-up"
+            {item.panel_attrs}
+          >
+            <p class="p-4 font-light leading-loose text-gray-500 dark:text-neutral-400">
+              <%= raw(item.content) %>
+            </p>
+          </div>
         </div>
-      </div>
-    </Display.accordion>
+      </Display.accordion>
+    </div>
     """
   end
 end

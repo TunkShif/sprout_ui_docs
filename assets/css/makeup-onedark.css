@@ -3,7 +3,6 @@
 }
 
 .highlight {
-  overflow: auto;
   background-color: #1e293b;
 }
 
@@ -14,6 +13,7 @@
 .highlight code {
   display: block;
   padding: 16px;
+  overflow-x: auto;
 }
 
 .highlight .unselectable {
