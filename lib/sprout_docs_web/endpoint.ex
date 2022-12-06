@@ -20,7 +20,7 @@ defmodule SproutDocsWeb.Endpoint do
   plug Plug.Static,
     at: "/",
     from: :sprout_docs,
-    gzip: false,
+    gzip: Mix.env() == :prod,
     only: SproutDocsWeb.static_paths()
 
   # Code reloading can be explicitly enabled under the
