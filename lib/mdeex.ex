@@ -35,7 +35,10 @@ defmodule MDEEx do
 
   def compile_string(source, options \\ []) do
     options = Keyword.merge(options, engine: Phoenix.LiveView.HTMLEngine)
-    source = Earmark.as_html!(source, escape: false, inner_html: true)
+
+    source =
+      Earmark.as_html!(source, escape: false, inner_html: true)
+      |> NimblePublisher.Highlighter.highlight()
 
     EEx.compile_string(source, options)
   end

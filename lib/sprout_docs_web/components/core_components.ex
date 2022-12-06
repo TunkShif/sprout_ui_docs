@@ -30,24 +30,18 @@ defmodule SproutDocsWeb.CoreComponents do
     """
   end
 
-  attr :class, :string, default: ""
+  attr :rest, :global
 
   def header(assigns) do
     navigations = [
-      %{name: "Documentation", route: "/docs"}
+      %{name: "Documentation", route: "/docs/getting-started"}
     ]
 
     assigns = assign(assigns, navigations: navigations)
 
-    # [
-    #   "sticky top-0 w-full flex-none z-50",
-    #   "bg-white/95 dark:bg-neutral-800/75 border-b border-slate-900/10 dark:border-neutral-50/[0.06]",
-    #   "backdrop-blur"
-    # ]
-
     ~H"""
-    <header class={@class}>
-      <div class="mx-auto">
+    <header {@rest}>
+      <div class="mx-auto h-[72px]">
         <div class="px-4 md:px-12 py-4">
           <div class="relative flex items-center justify-between">
             <.link href="/" class="flex-none">

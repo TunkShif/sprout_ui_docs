@@ -1,1 +1,11 @@
 # Hello, World
+
+> This is a *strong* text.
+
+```elixir
+IO.puts "Hello, world!"
+```
+
+- 1 
+- 2
+- 3

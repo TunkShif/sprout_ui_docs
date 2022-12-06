@@ -49,6 +49,7 @@ defmodule SproutDocs.MixProject do
       {:makeup_elixir, "~> 0.16.0"},
       {:makeup_eex, "~> 0.1.0"},
       {:earmark, "~> 1.4.0"},
+      {:nimble_publisher, "~> 0.1.0"},
       {:sprout_ui, git: "https://github.com/TunkShif/sprout_ui"}
     ]
   end

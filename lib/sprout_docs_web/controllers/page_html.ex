@@ -6,85 +6,7 @@ defmodule SproutDocsWeb.PageHTML do
 
   import Phoenix.HTML, only: [raw: 1]
 
-  def index(assigns) do
-    ~H"""
-    <main>
-      <.hero_section />
-
-      <div class="my-20 md:my-24 space-y-24">
-        <.feature_section>
-          <:icon>
-            <Heroicons.cube solid class="w-6 h-6 text-white" />
-          </:icon>
-          <:title>
-            Renderless function components
-          </:title>
-          <:description>
-            Sprout UI component does not render any visible HTML tags.
-            It only controls user interactions and related UI states with an underlying <a
-              href="https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements"
-              target="_blank"
-              class="underline"
-            >custom element</a>.
-            It is your responsibility to decide how to render the component,
-            and all you need to do is just passing attributes to the tags you're rendering.
-            You can see the flexibility of renderless component from the example code.
-          </:description>
-          <:content>
-            <.code_example code="dialog" />
-          </:content>
-        </.feature_section>
-
-        <.feature_section reverse>
-          <:icon>
-            <Heroicons.lifebuoy solid class="w-6 h-6 text-white" />
-          </:icon>
-          <:title>
-            WAI-ARIA compliant components
-          </:title>
-          <:description>
-            Sprout UI follows the
-            <a href="https://www.w3.org/WAI/ARIA/apg/" target="_blank" class="underline">
-              WAI-ARIA guide
-            </a>
-            to create accessible web experiences.
-            It fully supports assistive technology like screen readers and keyboard navigations.
-            Try using <kbd>Up</kbd> <kbd>Down</kbd> <kbd>Home</kbd> <kbd>End</kbd>
-            to navigate through the accordion items and using <kbd>Enter</kbd>
-            or <kbd>Space</kbd>
-            to expand/collapse the item.
-          </:description>
-          <:content>
-            <.accordion_example />
-          </:content>
-        </.feature_section>
-
-        <.feature_section>
-          <:icon>
-            <Heroicons.swatch solid class="w-6 h-6 text-white" />
-          </:icon>
-          <:title>Styling components made easy</:title>
-          <:description>
-            Since you're in control of rendering all the HTML tags,
-            you can choose whatever styling methods you like.
-            Every component is composed of different parts rendered with a
-            <code class="inline">data-part</code>
-            attribute that you can style each part using CSS atribute selector.
-            And when a component can have multiple UI states,
-            these states are also presented with a <code class="inline">data-state</code>
-            attribute. Sprout UI also comes with a tailwindcss plugin that makes it easier to styling different UI states.
-          </:description>
-          <:content>
-            <.switch_example />
-            <.code_example code="switch" class="mt-4" />
-          </:content>
-        </.feature_section>
-      </div>
-    </main>
-
-    <.footer />
-    """
-  end
+  embed_templates "page_html/*"
 
   defp hero_section(assigns) do
     ~H"""
@@ -124,8 +46,8 @@ defmodule SproutDocsWeb.PageHTML do
 
             <div class="mt-12">
               <div class="flex md:space-x-6 justify-around md:justify-start">
-                <.link
-                  href="#"
+                <a
+                  href="/docs/getting-started"
                   class={[
                     "h-12 px-6 flex justify-center items-center font-semibold text-white rounded-md",
                     "bg-gradient-to-tr from-emerald-500 to-lime-500 hover:from-emerald-400 hover:to-lime-400 dark:hover:from-emerald-300 dark:hover:to-lime-300",
@@ -133,8 +55,8 @@ defmodule SproutDocsWeb.PageHTML do
                   ]}
                 >
                   Get started
-                </.link>
-                <.link
+                </a>
+                <a
                   href="https://github.com/TunkShif/sprout_ui"
                   class={[
                     "h-12 px-6 flex justify-between items-center font-semibold text-white rounded-md",
@@ -143,7 +65,7 @@ defmodule SproutDocsWeb.PageHTML do
                   ]}
                 >
                   <span class="mr-2"><Icons.github class="w-4 h-4 md:w-5 md:h-5" /></span> GitHub
-                </.link>
+                </a>
               </div>
             </div>
           </div>
@@ -286,7 +208,7 @@ defmodule SproutDocsWeb.PageHTML do
                 "flex items-center justify-between w-full p-4 text-left",
                 "ui-open:text-emerald-500 dark:ui-open:text-emerald-600 transition-colors",
                 "ui-open:border-b-2 dark:border-neutral-500",
-                "focus:bg-gray-100 hover:bg-gray-100 dark:focus:bg-neutral-700 dark:hover:bg-neutral-700",
+                "hover:bg-gray-100 dark:hover:bg-neutral-700",
                 "focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-gray-400 focus-visible:rounded-lg",
                 "dark:focus-visible:ring-neutral-900 dark:focus-visible:ring-offset-neutral-800"
               ]}

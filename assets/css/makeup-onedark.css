@@ -25,191 +25,253 @@
   user-select: none;
 }
 
-.highlight . {
+.highlight .,
+.makeup . {
   color: #abb2bf;
 } /* :punctuation_marker */
-.highlight . {
+.highlight .,
+.makeup . {
   color: #abb2bf;
 } /* :token */
-.highlight .bp {
+.highlight .bp,
+.makeup .bp {
   color: #e5c07b;
 } /* :name_builtin_pseudo */
-.highlight .c {
+.highlight .c,
+.makeup .c {
   color: #7f848e;
 } /* :comment */
-.highlight .c1 {
+.highlight .c1,
+.makeup .c1 {
   color: #7f848e;
 } /* :comment_single */
-.highlight .ch {
+.highlight .ch,
+.makeup .ch {
   color: #7f848e;
 } /* :comment_hashbang */
-.highlight .cm {
+.highlight .cm,
+.makeup .cm {
   color: #7f848e;
 } /* :comment_multiline */
-.highlight .cp {
+.highlight .cp,
+.makeup .cp {
   color: #7f848e;
 } /* :comment_preproc */
-.highlight .cpf {
+.highlight .cpf,
+.makeup .cpf {
   color: #7f848e;
 } /* :comment_preproc_file */
-.highlight .cs {
+.highlight .cs,
+.makeup .cs {
   color: #7f848e;
 } /* :comment_special */
-.highlight .dl {
+.highlight .dl,
+.makeup .dl {
   color: #98c379;
 } /* :string_delimiter */
-.highlight .fm {
+.highlight .fm,
+.makeup .fm {
   color: #56b6c2;
   font-weight: bold;
 } /* :name_function_magic */
-.highlight .il {
+.highlight .il,
+.makeup .il {
   color: #d19a66;
 } /* :number_integer_long */
-.highlight .k {
+.highlight .k,
+.makeup .k {
   color: #c678dd;
 } /* :keyword */
-.highlight .kc {
+.highlight .kc,
+.makeup .kc {
   color: #e5c07b;
 } /* :keyword_constant */
-.highlight .kd {
+.highlight .kd,
+.makeup .kd {
   color: #c678dd;
 } /* :keyword_declaration */
-.highlight .kn {
+.highlight .kn,
+.makeup .kn {
   color: #c678dd;
 } /* :keyword_namespace */
-.highlight .kp {
+.highlight .kp,
+.makeup .kp {
   color: #c678dd;
 } /* :keyword_pseudo */
-.highlight .kr {
+.highlight .kr,
+.makeup .kr {
   color: #c678dd;
 } /* :keyword_reserved */
-.highlight .kt {
+.highlight .kt,
+.makeup .kt {
   color: #e5c07b;
 } /* :keyword_type */
-.highlight .m {
+.highlight .m,
+.makeup .m {
   color: #d19a66;
 } /* :number */
-.highlight .mb {
+.highlight .mb,
+.makeup .mb {
   color: #d19a66;
 } /* :number_bin */
-.highlight .mf {
+.highlight .mf,
+.makeup .mf {
   color: #d19a66;
 } /* :number_float */
-.highlight .mh {
+.highlight .mh,
+.makeup .mh {
   color: #d19a66;
 } /* :number_hex */
-.highlight .mi {
+.highlight .mi,
+.makeup .mi {
   color: #d19a66;
 } /* :number_integer */
-.highlight .mo {
+.highlight .mo,
+.makeup .mo {
   color: #d19a66;
 } /* :number_oct */
-.highlight .n {
+.highlight .n,
+.makeup .n {
   color: #e06c75;
 } /* :name */
-.highlight .na {
+.highlight .na,
+.makeup .na {
   color: #e06c75;
 } /* :name_attribute */
-.highlight .nb {
+.highlight .nb,
+.makeup .nb {
   color: #e5c07b;
 } /* :name_builtin */
-.highlight .nc {
+.highlight .nc,
+.makeup .nc {
   color: #e5c07b;
 } /* :name_class */
-.highlight .nd {
+.highlight .nd,
+.makeup .nd {
   color: #61afef;
 } /* :name_decorator */
-.highlight .ne {
+.highlight .ne,
+.makeup .ne {
   color: #e06c75;
 } /* :name_exception */
-.highlight .nf {
+.highlight .nf,
+.makeup .nf {
   color: #61afef;
   font-weight: bold;
 } /* :name_function */
-.highlight .ni {
+.highlight .ni,
+.makeup .ni {
   color: #e06c75;
 } /* :name_entity */
-.highlight .nl {
+.highlight .nl,
+.makeup .nl {
   color: #e06c75;
 } /* :name_label */
-.highlight .nn {
+.highlight .nn,
+.makeup .nn {
   color: #e06c75;
 } /* :name_namespace */
-.highlight .no {
+.highlight .no,
+.makeup .no {
   color: #e06c75;
 } /* :name_constant */
-.highlight .nt {
+.highlight .nt,
+.makeup .nt {
   color: #e06c75;
 } /* :name_tag */
-.highlight .nv {
+.highlight .nv,
+.makeup .nv {
   color: #e06c75;
 } /* :name_variable */
-.highlight .nx {
+.highlight .nx,
+.makeup .nx {
   color: #e06c75;
 } /* :name_other */
-.highlight .o {
+.highlight .o,
+.makeup .o {
   color: #56b6c2;
 } /* :operator */
-.highlight .ow {
+.highlight .ow,
+.makeup .ow {
   color: #56b6c2;
 } /* :operator_word */
-.highlight .p {
+.highlight .p,
+.makeup .p {
   color: #abb2bf;
 } /* :punctuation */
-.highlight .py {
+.highlight .py,
+.makeup .py {
   color: #e06c75;
 } /* :name_property */
-.highlight .s {
+.highlight .s,
+.makeup .s {
   color: #98c379;
 } /* :string */
-.highlight .s1 {
+.highlight .s1,
+.makeup .s1 {
   color: #98c379;
 } /* :string_single */
-.highlight .s2 {
+.highlight .s2,
+.makeup .s2 {
   color: #98c379;
 } /* :string_double */
-.highlight .sa {
+.highlight .sa,
+.makeup .sa {
   color: #98c379;
 } /* :string_affix */
-.highlight .sb {
+.highlight .sb,
+.makeup .sb {
   color: #98c379;
 } /* :string_backtick */
-.highlight .sc {
+.highlight .sc,
+.makeup .sc {
   color: #98c379;
 } /* :string_char */
-.highlight .sd {
+.highlight .sd,
+.makeup .sd {
   color: #98c379;
 } /* :string_doc */
-.highlight .se {
+.highlight .se,
+.makeup .se {
   color: #98c379;
 } /* :string_escape */
-.highlight .sh {
+.highlight .sh,
+.makeup .sh {
   color: #98c379;
 } /* :string_heredoc */
-.highlight .si {
+.highlight .si,
+.makeup .si {
   color: #98c379;
 } /* :string_interpol */
-.highlight .sr {
+.highlight .sr,
+.makeup .sr {
   color: #98c379;
 } /* :string_regex */
-.highlight .ss {
+.highlight .ss,
+.makeup .ss {
   color: #98c379;
 } /* :string_symbol */
-.highlight .sx {
+.highlight .sx,
+.makeup .sx {
   color: #98c379;
 } /* :string_other */
-.highlight .sx {
+.highlight .sx,
+.makeup .sx {
   color: #98c379;
 } /* :string_sigil */
-.highlight .vc {
+.highlight .vc,
+.makeup .vc {
   color: #e06c75;
 } /* :name_variable_class */
-.highlight .vg {
+.highlight .vg,
+.makeup .vg {
   color: #e06c75;
 } /* :name_variable_global */
-.highlight .vi {
+.highlight .vi,
+.makeup .vi {
   color: #e06c75;
 } /* :name_variable_instance */
-.highlight .vm {
+.highlight .vm,
+.makeup .vm {
   color: #e06c75;
 } /* :name_variable_magic */
