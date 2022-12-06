@@ -12,12 +12,13 @@ defmodule SproutDocsWeb.Layouts do
     assigns = assign(assigns, categories: Documentation.all())
 
     # TODO: mobile layout
+    # TODO: document search
 
     ~H"""
-    <sidebar class="fixed top-[72px] bottom-0 w-72 px-6 overflow-y-auto">
+    <sidebar class="hidden lg:block fixed top-[72px] bottom-0 w-72 px-6 overflow-y-auto">
       <div class="sticky top-0">
         <div class="py-8">
-          <button class="block w-full">Search</button>
+          <button class="hidden w-full">Search</button>
         </div>
       </div>
 

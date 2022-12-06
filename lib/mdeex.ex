@@ -36,6 +36,9 @@ defmodule MDEEx do
   def compile_string(source, options \\ []) do
     options = Keyword.merge(options, engine: Phoenix.LiveView.HTMLEngine)
 
+    [:makeup_elixir, :makeup_eex, :makeup_js]
+    |> Enum.each(&Application.ensure_all_started(&1))
+
     source =
       Earmark.as_html!(source, escape: false, inner_html: true)
       |> NimblePublisher.Highlighter.highlight()

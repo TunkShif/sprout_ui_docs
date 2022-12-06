@@ -1,11 +1,61 @@
-# Hello, World
+# Installation
 
-> This is a *strong* text.
+The package can be installed by adding `sprout_ui` to your list of dependencies in `mix.exs`:
 
 ```elixir
-IO.puts "Hello, world!"
+defp deps do
+  [
+    {:sprout_ui, "~> 0.1"},
+  ]
+end
 ```
 
-- 1 
-- 2
-- 3
+Sprout UI requires additional JavaScript to work, add the following configurations in your `assets/app.js`:
+
+```javascript
+// import components you're using from `sprout-ui` package
+import { createSproutConfig, Collapsible, Accordion, Dialog } from "sprout-ui"
+
+// register imported components here in `createSproutConfig` function
+const { initComponents, handleDomChange } = createSproutConfig({
+  components: [Collapsible(), Accordion(), Dialog()]
+})
+
+// when initializing `liveSocket`, pass the `handleDomChange` function to the `dom` option
+// so that it can handle LiveView DOM patching operations properly
+let liveSocket = new LiveSocket("/live", Socket, {
+  ...,
+  dom: {
+    onBeforeElUpdated(from, to) {
+      handleDomChange(from, to) // !IMPORTANT
+    }
+  }
+})
+
+// finnaly initialize all components
+initComponents()
+```
+
+If you're using package managers like npm, yarn or pnpm, make sure to add `sprout-ui` js dependency to `package.json`:
+
+```js
+{
+  "dependencies": {
+    "sprout-ui": "file:../deps/sprout_ui/"
+  }
+}
+```
+
+## Install Tailwind CSS Plugin
+
+Sprout UI comes with a tailwind css plugin to make it easier for styling components.
+
+You can install it by adding the following config to your `assets/tailwind.config.js`:
+
+```js
+module.exports = {
+  plugins: [
+    require("sprout-ui/tailwind")
+  ]
+}
+```

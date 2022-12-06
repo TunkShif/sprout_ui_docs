@@ -72,7 +72,6 @@
 .highlight .fm,
 .makeup .fm {
   color: #56b6c2;
-  font-weight: bold;
 } /* :name_function_magic */
 .highlight .il,
 .makeup .il {
@@ -157,7 +156,6 @@
 .highlight .nf,
 .makeup .nf {
   color: #61afef;
-  font-weight: bold;
 } /* :name_function */
 .highlight .ni,
 .makeup .ni {

@@ -19,7 +19,7 @@ defmodule SproutDocsWeb.Code do
 
     ~H"""
     <div {@rest}>
-      <div class="rounded-md shadow-sm overflow-hidden">
+      <div class="text-sm rounded-md shadow-sm overflow-hidden">
         <%= raw(Makeup.highlight(@source, lexer: @lexer)) %>
       </div>
     </div>

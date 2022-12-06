@@ -22,6 +22,24 @@ module.exports = {
           from: { height: "var(--panel-height)" },
           to: { height: 0 }
         }
+      },
+      typography: {
+        DEFAULT: {
+          css: {
+            "blockquote p:first-of-type::before": {
+              content: ""
+            },
+            "blockquote p:last-of-type::after": {
+              content: ""
+            },
+            "code::before": {
+              content: ""
+            },
+            "code::after": {
+              content: ""
+            }
+          }
+        }
       }
     }
   },
