@@ -1,4 +1,6 @@
 defmodule MDEEx do
+  import Phoenix.HTML
+
   defmacro __using__(_) do
     quote do
       require MDEEx
@@ -36,13 +38,22 @@ defmodule MDEEx do
   def compile_string(source, options \\ []) do
     options = Keyword.merge(options, engine: Phoenix.LiveView.HTMLEngine)
 
-    [:makeup_elixir, :makeup_eex, :makeup_js]
+    [:makeup_elixir, :makeup_html, :makeup_eex, :makeup_js]
     |> Enum.each(&Application.ensure_all_started(&1))
 
     source =
-      Earmark.as_html!(source, escape: false, inner_html: true)
+      Earmark.as_html!(source,
+        escape: false,
+        inner_html: true,
+        registered_processors: {"code", &transform_code_block/1}
+      )
       |> NimblePublisher.Highlighter.highlight()
 
     EEx.compile_string(source, options)
+  end
+
+  defp transform_code_block({"code", attrs, [source], meta}) do
+    escaped = source |> html_escape() |> safe_to_string()
+    {:replace, {"code", attrs, [escaped], meta}}
   end
 end
