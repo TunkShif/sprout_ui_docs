@@ -10,7 +10,7 @@ kbd {
 }
 
 code.inline {
-  @apply bg-gray-200 dark:bg-neutral-700 rounded-md;
-  padding-inline: 5px;
+  @apply bg-gray-200 dark:bg-neutral-700 rounded-sm;
+  padding-inline: 4px;
 }
 

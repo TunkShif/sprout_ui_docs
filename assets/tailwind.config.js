@@ -32,6 +32,10 @@ module.exports = {
             "blockquote p:last-of-type::after": {
               content: ""
             },
+            code: {
+              color: "inherit",
+              fontWeight: "500"
+            },
             "code::before": {
               content: ""
             },

@@ -25,5 +25,8 @@ defmodule SproutDocs.Documentation do
 
   def page_title(category), do: get_in(all(), [category, :title])
 
+  def page_title(category, slug),
+    do: get_in(all(), [category, :articles]) |> Enum.find(&(&1.slug == slug)) |> Map.get(:title)
+
   def page_view(category), do: get_in(all(), [category, :view])
 end

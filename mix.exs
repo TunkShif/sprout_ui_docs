@@ -47,6 +47,7 @@ defmodule SproutDocs.MixProject do
       {:plug_cowboy, "~> 2.5"},
       {:makeup, "~> 1.1.0"},
       {:makeup_elixir, "~> 0.16.0"},
+      {:makeup_html, "~> 0.1.0"},
       {:makeup_eex, "~> 0.1.0"},
       {:makeup_js, "~> 0.1.0"},
       {:earmark, "~> 1.4.0"},

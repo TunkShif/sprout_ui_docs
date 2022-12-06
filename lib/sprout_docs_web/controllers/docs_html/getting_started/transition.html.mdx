@@ -1,0 +1,43 @@
+# Transition
+
+Sprout UI provides a transition utility that let you easily add enter/leave transitions to component parts.
+
+If you've ever used Transition component from [Vue](https://vuejs.org/guide/built-ins/transition.html) or [HeadlessUI](https://headlessui.com/react/transition),
+then you're good to go. Sprout UI provides a similar way to add transitions to component parts.
+
+Let's look at the following example popover component:
+
+<div>
+  <.tooltip_example />
+</div>
+
+```heex
+<Overlay.popover :let={api} offset={12} placement="top">
+  <button {api.trigger_attrs}>Toggle</button>
+  <div
+    data-transition
+    data-enter="transition duration-200 ease-in-out"
+    data-enter-from="opacity-0"
+    data-enter-to="opacity-100"
+    data-leave="transition duration-300 ease-in-out"
+    data-leave-from="opacity-100"
+    data-leave-to="opacity-0"
+    {api.panel_attrs}
+  >
+  </div>
+</Overlay.popover>
+```
+
+All you need to do is just adding data attributes to the component part that you want to have transitions.
+
+The following transition attributes are supported:
+
+- `data-transition`: requried if the component part should have transitions
+- `data-enter`: classes added to the transitioning element during the entire enter stage
+- `data-enter-from`: classes added to the transitioning element before the enter stage
+- `data-enter-to`: classes added to the transitioning element after the enter stage
+- `data-enter-ended`: classes added to the transitioning element when the enter transition is done
+- `data-leave`: classes added to the transitioning element during the entire leave stage
+- `data-leave-from`: classes added to the transitioning element before the leave stage
+- `data-leave-to`: classes added to the transitioning element after the leave stage
+- `data-leave-ended`: classes added to the transitioning element when the leave transition is done

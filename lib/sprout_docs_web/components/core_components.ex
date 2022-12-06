@@ -41,7 +41,7 @@ defmodule SproutDocsWeb.CoreComponents do
 
     ~H"""
     <header {@rest}>
-      <div class="mx-auto h-[72px]">
+      <div class="mx-auto md:h-[72px]">
         <div class="px-4 md:px-12 py-4">
           <div class="relative flex items-center justify-between">
             <.link href="/" class="flex-none">

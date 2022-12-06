@@ -1,0 +1,75 @@
+# Styling Guide
+
+Sprout UI components are all completely unstyled. Every component is composed of different parts.
+
+## Styling component parts
+
+For example, a dialog component has the following parts: trigger, backdrop, container, panel, title, description, close button.
+
+The following dialog component
+
+```heex
+<Overlay.dialog :let={api}>
+  <button {api.trigger_attrs}>Open</button>
+
+  <div {api.container_attrs}>
+    <div {api.backdrop_attrs}></div>
+    <div {api.panel_attrs}>
+      <h2 {api.title_attrs}>Dialog</h2>
+      <p {api.description_attrs}>...</p>
+      <button {api.close_button}>&times;</button>
+    </div>
+  </div>
+</Overlay.dialog>
+```
+
+actually is rendered like the following HTML structure:
+
+```html
+<button data-part="trigger">Open</button>
+
+<div data-part="container">
+  <div data-part="backdrop"></div>
+  <div data-part="panel">
+    <h2 data-part="title">Dialog</h2>
+    <p data-part="description">...</p>
+    <button data-part="close-button">&times;</button>
+  </div>
+</div>
+```
+
+You can use CSS attribute selectors to style component part:
+
+```js
+[data-part="backdrop"] {
+  background-color: #000;
+  opacity: 0.6;
+}
+
+[data-part="panel"] {
+  padding: 16px;
+  border-radius: 16px;
+}
+```
+
+## Styling different UI states
+
+When a component has different UI states, for example, a switch can be either `checked` or `unchecked`,
+the state of the component is presented in a `data-state` attribute. You can style different states using CSS attribute selectors.
+
+```js
+:where([data-state="unchecked"]) [data-part="track"] {
+  background-color: lightgray;
+}
+
+:where([data-state="checked"]) [data-part="track"] {
+  background-color: blue;
+}
+```
+
+If you're using tailwind css, Sprout UI provides a tailwind css plugin that added different variants to make it easier for styling different states.
+
+Currently you can use the following variants:
+
+- `ui-open` & `ui-closed`
+- `ui-checked` & `ui-unchecked`

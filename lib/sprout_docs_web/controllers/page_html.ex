@@ -122,7 +122,7 @@ defmodule SproutDocsWeb.PageHTML do
       <div class="dialog" {api.panel_attrs}>
         <h2 {api.title_attrs}>Dialog</h2>
         <p {api.description_attrs}>...</p>
-        <buton class="button" {api.close_button}>&times;</button>
+        <button class="button" {api.close_button}>&times;</button>
       </div>
     </div>
   </Overlay.dialog>

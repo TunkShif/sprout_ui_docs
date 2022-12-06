@@ -19,7 +19,7 @@ defmodule SproutDocsWeb.DocsController do
     conn
     |> put_view(html: Documentation.page_view(category))
     |> render(String.to_existing_atom(page),
-      page_title: Documentation.page_title(category),
+      page_title: Documentation.page_title(category, page),
       category: category,
       page: page
     )
