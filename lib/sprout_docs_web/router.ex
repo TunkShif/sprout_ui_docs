@@ -18,6 +18,9 @@ defmodule SproutDocsWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+
+    get "/docs/:category", DocsController, :index
+    get "/docs/:category/:page", DocsController, :show
   end
 
   # Other scopes may use custom stacks.
