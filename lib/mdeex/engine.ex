@@ -3,8 +3,15 @@ defmodule MDEEx.Engine do
 
   @impl true
   def compile(path, _name) do
+    quote do
+      require MDEEx.Engine
+      MDEEx.Engine.compile(unquote(path))
+    end
+  end
+
+  defmacro compile(path) do
     path
     |> File.read!()
-    |> MDEEx.compile_string(line: 1)
+    |> MDEEx.compile_string(line: 1, caller: __CALLER__)
   end
 end

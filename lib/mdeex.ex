@@ -44,7 +44,6 @@ defmodule MDEEx do
     source =
       Earmark.as_html!(source,
         escape: false,
-        inner_html: true,
         registered_processors: {"code", &transform_code_block/1}
       )
       |> NimblePublisher.Highlighter.highlight()
