@@ -31,7 +31,7 @@ defmodule MDEEx do
     end
   end
 
-  def __embed__(path), do: path |> Path.basename() |> Path.rootname(".html.mdeex")
+  def __embed__(path), do: path |> Path.basename() |> Path.rootname(".html.mdx")
 
   def compile_string(source, options \\ []) do
     options = Keyword.merge(options, engine: Phoenix.LiveView.HTMLEngine)
