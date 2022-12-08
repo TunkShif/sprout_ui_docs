@@ -14,17 +14,26 @@
   </.flash>
 </div>
 
-<.header class={[
-  "sticky top-0 w-full flex-none z-50",
-  "bg-white/95 dark:bg-neutral-800/75 border-b border-slate-900/10 dark:border-neutral-50/[0.06]",
-  "backdrop-blur"
-]} />
+<.header
+  show_navs
+  category={@category}
+  page={assigns[:page]}
+  class={[
+    "sticky top-0 w-full flex-none z-50",
+    "bg-white/95 dark:bg-neutral-800/75 border-b border-slate-900/10 dark:border-neutral-50/[0.06]",
+    "backdrop-blur"
+  ]}
+/>
 
 <main class="relative">
-  <.sidebar category={@category} page={assigns[:page]} />
+  <.navigations
+    category={@category}
+    page={assigns[:page]}
+    class="hidden lg:block fixed top-[72px] bottom-0 w-72 px-6 overflow-y-auto"
+  />
   <div class="lg:ml-72">
     <div class="py-6 px-6 md:py-12 md:px-12">
-      <article class="prose prose-neutral dark:prose-invert">
+      <article class="prose prose-neutral dark:prose-invert max-w-3xl">
         <%= @inner_content %>
       </article>
     </div>

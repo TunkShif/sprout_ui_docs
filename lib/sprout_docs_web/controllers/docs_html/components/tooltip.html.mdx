@@ -1,0 +1,66 @@
+# Tooltip
+
+A tooltip is a component that shows brief information when users interact with an associated trigger element.
+
+<div>
+  <.tooltip_example />
+</div>
+
+## Setup
+
+To use the tooltip component, you'll have to import `Floating` and `Tooltip` modules in your `assets/app.js`.
+
+```js
+import { createSproutConfig, Floating, Tooltip } from "sprout-ui";
+
+const { initComponents, handleDomChange } = createSproutConfig({
+  components: [Floating(), Tooltip()],
+});
+```
+
+## Anatomy
+
+```html
+<sp-tooltip data-state="open | closed">
+  <div data-part="trigger"></div>
+  <div data-part="container">
+    <div data-part="arrow"></div>
+  </div>
+</sp-tooltip>
+```
+
+- **trigger**: the trigger for the tooltip
+- **container**: the container for the tooltip content
+- **arrow**: optional arrow for the tooltip container
+
+Under the hood, all the slot contents are rendered inside a `sp-tooltip` custom element.
+
+Be **cautious** that the **container** must be a `div` tag because internally it is actually a [customized builtin element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#high-level_view).
+
+## Attributes
+
+| Attribute     | Type       | Description                                                |
+| ------------- | ---------- | ---------------------------------------------------------- |
+| `placement`   | `:string`  | Default placement for the tooltip, default to `"top"`      |
+| `offset`      | `:integer` | The offset between the tooltip and the trigger             |
+| `open_delay`  | `:integer` | Delay in milliseconds before showing the tooltip           |
+| `close_delay` | `:integer` | Delay in milliseconds before hiding the tooltip            |
+| `on_open`     | `JS`       | JS commands executed when the tooltip is showing           |
+| `on_close`    | `JS`       | JS commands executed when the tooltip is hiding            |
+| `rest`        | `:global`  | Global attributes to be passed to the `sp-tooltip` element |
+
+## API
+
+| API               | Description                                       |
+| ----------------- | ------------------------------------------------- |
+| `trigger_attrs`   | Attributes to be passed to the **trigger** part   |
+| `container_attrs` | Attributes to be passed to the **container** part |
+| `arrow_attrs`     | Attributes to be passed to the **arrow** part     |
+
+## Transition
+
+The **container** element can have transitions when the tooltip is showing or hiding. Check out the guide on [Transition](/docs/getting-started/transition).
+
+## Accessibility
+
+When a tooltip is active, press <kbd>Escape</kbd> will dismiss the tooltip. The tooltip will show up when the trigger element receives focus and will dismiss when the trigger loses focus.

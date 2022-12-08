@@ -1,0 +1,73 @@
+# Dialog
+
+A dialog (or modal) is a window overlaid on the primary window.
+
+<div>
+  <.dialog_example />
+</div>
+
+## Setup
+
+To use the dialog component, you'll have to import `Dialog` module in your `assets/app.js`.
+
+```js
+import { createSproutConfig, Dialog } from "sprout-ui";
+
+const { initComponents, handleDomChange } = createSproutConfig({
+  components: [Dialog()],
+});
+```
+
+## Anatomy
+
+```html
+<sp-dialog data-state="open | closed">
+  <div data-part="trigger"></div>
+  <div data-part="container">
+    <div data-part="backdrop"></div>
+    <div data-part="panel">
+      <h2 data-part="title"></h2>
+      <p data-part="description"></p>
+      <button data-part="close-button"></button>
+    </div>
+  </div>
+</sp-dialog>
+```
+
+- **trigger**: the trigger for the dialog
+- **container**: the container for backdrop and panel
+- **backdrop**: optional backdrop for the dialog
+- **panel**: the panel for dialog content
+- **title**: the title for the dialog
+- **description**: the description for the dialog
+- **close-button**: optional close button for the dialog content
+
+Under the hood, all the slot contents are rendered inside a `sp-dialog` custom element.
+
+## Attributes
+
+| Attribute             | Type       | Description                                                                    |
+| --------------------- | ---------- | ------------------------------------------------------------------------------ |
+| `prevent_scroll`      | `:bollean` | Whether to disable page scrolling when the dialog is opened, default to `true` |
+| `close_on_esc`        | `:boolean` | Whether to close the dialog when <kbd>Escape</kbd> pressed, default to `true`  |
+| `close_on_click_away` | `:boolean` | Whether to close the dialog when clicking outside it, default to `true`        |
+| `on_open`             | `JS`       | JS commands executed when the dialog is opened                                 |
+| `on_close`            | `JS`       | JS commands executed when the dialog is closed                                 |
+| `rest`                | `:global`  | Global attributes to be passed to the `sp-dialog` element                      |
+
+## API
+
+| API                  | Description                                          |
+| -------------------- | ---------------------------------------------------- |
+| `trigger_attrs`      | Attributes to be passed to the **trigger** part      |
+| `container_attrs`    | Attributes to be passed to the **container** part    |
+| `panel_attrs`        | Attributes to be passed to the **panel** part        |
+| `title_attrs`        | Attributes to be passed to the **title** part        |
+| `description_attrs`  | Attributes to be passed to the **description** part  |
+| `close_button_attrs` | Attributes to be passed to the **close-button** part |
+| `open_dialog_js`     | JS commands to open the dialog                       |
+| `close_popover_js`   | JS commands to close the dialog                      |
+
+## Transition
+
+The **backdrop** and **panel** element can have transitions when the dialog is showing or hiding. Check out the guide on [Transition](/docs/getting-started/transition).

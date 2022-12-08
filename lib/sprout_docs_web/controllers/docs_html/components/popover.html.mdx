@@ -1,0 +1,67 @@
+# Popover
+
+A popover is a non-modal dialog that floats around an associated trigger element.
+
+<div>
+  <.popover_example />
+</div>
+
+## Setup
+
+To use the popover component, you'll have to import `Floating` and `Popover` modules in your `assets/app.js`.
+
+```js
+import { createSproutConfig, Floating, Popover } from "sprout-ui";
+
+const { initComponents, handleDomChange } = createSproutConfig({
+  components: [Floating(), Popover()],
+});
+```
+
+## Anatomy
+
+```html
+<sp-popover data-state="open | closed">
+  <button data-part="trigger"></button>
+  <div data-part="panel">
+    <buton data-part="close-button"></button>
+    <div data-part="arrow"></div>
+  </div>
+</sp-popover>
+```
+
+- **trigger**: the trigger for the popover
+- **panel**: the panel for the popover content
+- **arrow**: optional arrow for the popover
+- **close-button**: optional close button for the popover
+
+Under the hood, all the slot contents are rendered inside a `sp-popover` custom element.
+
+Be **cautious** that the **container** must be a `div` tag because internally it is actually a [customized builtin element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#high-level_view).
+
+## Attributes
+
+| Attribute             | Type       | Description                                                                       |
+| --------------------- | ---------- | --------------------------------------------------------------------------------- |
+| `placement`           | `:string`  | Default placement for the tooltip, default to `"top"`                             |
+| `offset`              | `:integer` | The offset between the tooltip and the trigger                                    |
+| `close_on_esc`        | `:boolean` | Whether to close the popover when <kbd>Escape</kbd> pressed, default to `true`    |
+| `close_on_click_away` | `:boolean` | Whether to close the popover when clicking outside the popover, default to `true` |
+| `on_open`             | `JS`       | JS commands executed when the popover opened                                      |
+| `on_close`            | `JS`       | JS commands executed when the popover closed                                      |
+| `rest`                | `:global`  | Global attributes to be passed to the `sp-popover` element                        |
+
+## API
+
+| API                  | Description                                          |
+| -------------------- | ---------------------------------------------------- |
+| `trigger_attrs`      | Attributes to be passed to the **trigger** part      |
+| `panel_attrs`        | Attributes to be passed to the **panel** part        |
+| `arrow_attrs`        | Attributes to be passed to the **arrow** part        |
+| `close_button_attrs` | Attributes to be passed to the **close-button** part |
+| `open_popover_js`    | JS commands to open the popover                      |
+| `close_popover_js`   | JS commands to close the popover                     |
+
+## Transition
+
+The **panel** element can have transitions when the popover is showing or hiding. Check out the guide on [Transition](/docs/getting-started/transition).

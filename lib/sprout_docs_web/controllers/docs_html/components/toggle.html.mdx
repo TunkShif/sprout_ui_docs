@@ -1,0 +1,36 @@
+# Toggle
+
+A toggle is a two-state button component that can be turned on or off.
+
+<div>
+  <.toggle_example />
+</div>
+
+## Setup
+
+To use the toggle component, you'll have to import `Toggle` module in your `assets/app.js`.
+
+```js
+import { createSproutConfig, Toggle } from "sprout-ui";
+
+const { initComponents, handleDomChange } = createSproutConfig({
+  components: [Toggle()],
+});
+```
+
+## Anatomy
+
+```html
+<button is="sp-toggle" data-state="on | off"></button>
+```
+
+Under the hood the slot content is rendered inside a `sp-toggle` [customized builtin element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#high-level_view).
+
+## Attributes
+
+| Attribute       | Type       | Description                                               |
+| --------------- | ---------- | --------------------------------------------------------- |
+| `on`            | `:boolean` | Turn on the toggle by default, default to `false`         |
+| `on_toggle_on`  | `JS`       | JS commands executed when the toggle is turned on         |
+| `on_toggle_off` | `JS`       | JS commands executed when the toggle is turned off        |
+| `rest`          | `:global`  | Global attributes to be passed to the `sp-toggle` element |

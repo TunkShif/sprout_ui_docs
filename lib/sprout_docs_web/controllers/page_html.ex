@@ -2,7 +2,7 @@ defmodule SproutDocsWeb.PageHTML do
   use SproutDocsWeb, :html
 
   alias SproutUI.{Display, Input}
-  alias SproutDocsWeb.{Icons, Code}
+  alias SproutDocsWeb.Icons
 
   import Phoenix.HTML, only: [raw: 1]
 
@@ -144,7 +144,7 @@ defmodule SproutDocsWeb.PageHTML do
   """
 
   attr :code, :string, values: ["dialog", "switch"]
-  attr :rest, :global
+  attr :class, :string, default: ""
 
   defp code_example(assigns) do
     assigns =
@@ -157,7 +157,11 @@ defmodule SproutDocsWeb.PageHTML do
       )
 
     ~H"""
-    <Code.plain source={@source} language="heex" {@rest} />
+    <div class={["code-display", @class]}>
+      <div class="text-sm rounded-md shadow-sm overflow-hidden">
+        <.code_block source={@source} language="heex" />
+      </div>
+    </div>
     """
   end
 

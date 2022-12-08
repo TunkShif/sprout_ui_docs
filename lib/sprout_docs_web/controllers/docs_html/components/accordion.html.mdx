@@ -1,0 +1,93 @@
+# Accordion
+
+An accordion is a vertically stacked set of interactive headings that can expand/collapse to reveal associated sections of content.
+
+<div>
+  <.accordion_example />
+</div>
+
+## Setup
+
+To use the accordion component, you'll have to import `Accordion` and `Collapsible` modules in your `assets/app.js`.
+
+```js
+import { createSproutConfig, Accordion, Collapsible } from "sprout-ui";
+
+const { initComponents, handleDomChange } = createSproutConfig({
+  components: [Collapsible(), Accordion()],
+});
+```
+
+## Anatomy
+
+```html
+<sp-accordion>
+  <div data-part="container" data-state="open | closed">
+    <button data-part="trigger">title</button>
+    <div data-part="panel">
+      <p>content</p>
+    </div>
+  </div>
+</sp-accordion>
+```
+
+- **container**: the container for each accordion item
+- **trigger**: the trigger for the accordion item
+- **panel**: the content area revealed by clicking the trigger
+
+Under the hood, all the slot contents are rendered inside a `sp-accordion` custom element.
+
+Be **cautious** that the **container** must be a `div` tag because internally it is actually a [customized builtin element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#high-level_view).
+
+## Attributes
+
+| Attribute        | Type       | Description                                                   |
+| ---------------- | ---------- | ------------------------------------------------------------- |
+| `items`          | `:list`    | A list of map that served as the accordion item data          |
+| `allow_multiple` | `:boolean` | Allow multiple item open at the same time, default to `false` |
+| `on_item_open`   | `JS`       | JS commands executed when an item opened                      |
+| `on_item_close`  | `JS`       | JS commands executed when an item closed                      |
+| `rest`           | `:global`  | Global attributes to be passed to the `sp-accordion` element  |
+
+## API
+
+| API     | Description                                                        |
+| ------- | ------------------------------------------------------------------ |
+| `items` | A mutated list of items that is originally passed to the component |
+
+For each item, you'll have access to the fowllowing API fields besides your original map values:
+
+| API               | Description                                   |
+| ----------------- | --------------------------------------------- |
+| `index`           | Index of the current item                     |
+| `container_attrs` | Attributes to be passed to **container** part |
+| `trigger_attrs`   | Attributes to be passed to **trigger** part   |
+| `panel_attrs`     | Attributes to be passed to **panel** part     |
+
+Here's a simplified example showing how you can rendering accordion items:
+
+```elixir
+items = [
+  %{title: "...", content: "..."},
+  %{title: "...", content: "..."},
+  %{title: "...", content: "..."}
+]
+
+<Display.accordion
+    :let={api}
+    items={@items}
+  >
+    <div :for={item <- api.items} {item.container_attrs}>
+      <button {item.trigger_attrs}><%= item.title %></button>
+      <div {item.panel_attrs}><%= item.content %></div>
+    </div>
+  </Display.accordion>
+```
+
+## Animation
+
+See [Collapsible - Animation](/docs/components/collapsible).
+
+## Accessibility
+
+When focus is on the accordion item trigger, press <kbd>Enter</kbd> or <kbd>Space</kbd> to toggle the current item, or use <kbd>Up</kbd> <kbd>Down</kbd> <kbd>Home</kbd> <kbd>End</kbd> to navigate throught accordion items.

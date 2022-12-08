@@ -4,7 +4,9 @@ defmodule SproutDocsWeb.CoreComponents do
   """
   use Phoenix.Component
 
+  alias SproutUI.Input
   alias SproutDocsWeb.Icons
+  alias SproutDocs.Documentation
   alias Phoenix.LiveView.JS
   import SproutDocsWeb.Gettext
 
@@ -30,6 +32,9 @@ defmodule SproutDocsWeb.CoreComponents do
     """
   end
 
+  attr :category, :string, default: ""
+  attr :page, :string, default: ""
+  attr :show_navs, :boolean, default: false
   attr :rest, :global
 
   def header(assigns) do
@@ -52,7 +57,7 @@ defmodule SproutDocsWeb.CoreComponents do
               />
             </.link>
 
-            <div class="hidden md:flex items-center">
+            <div class="hidden lg:flex items-center">
               <nav class="text-sm font-semibold hover:text-emerald-500 transition-colors duration-200">
                 <ul class="flex space-x-8">
                   <li :for={navigation <- @navigations}>
@@ -72,12 +77,34 @@ defmodule SproutDocsWeb.CoreComponents do
               </div>
             </div>
 
-            <div class="md:hidden flex items-center">
+            <div class="lg:hidden flex items-center space-x-4">
               <.theme_toggle />
+              <Input.toggle
+                :if={@show_navs}
+                on_toggle_on={JS.remove_class("hidden", to: "#mobile-navs")}
+                on_toggle_off={JS.add_class("hidden", to: "#mobile-navs")}
+                class="block text-slate-500 dark:text-neutral-500 hover:text-slate-600 dark:hover:text-neutral-400 transition-colors duration-200"
+              >
+                <span class="sr-only">mobile navigation toggle</span>
+                <span class="ui-on:hidden">
+                  <Heroicons.bars_3 mini class="w-6 h-6" />
+                </span>
+                <span class="ui-off:hidden">
+                  <Heroicons.x_mark mini class="w-6 h-6" />
+                </span>
+              </Input.toggle>
             </div>
           </div>
         </div>
       </div>
+
+      <.navigations
+        :if={@show_navs}
+        id="mobile-navs"
+        category={@category}
+        page={@page}
+        class="lg:hidden mx-4 mt-2 mb-4 hidden"
+      />
     </header>
     """
   end
@@ -114,6 +141,110 @@ defmodule SproutDocsWeb.CoreComponents do
         </div>
       </div>
     </footer>
+    """
+  end
+
+  attr :source, :string, required: true
+  attr :language, :string, default: nil
+  attr :rest, :global
+
+  def code_block(assigns) do
+    import Phoenix.HTML, only: [raw: 1]
+
+    lexer =
+      case assigns.language do
+        "heex" -> Makeup.Lexers.HEExLexer
+        "html" -> Makeup.Lexers.HEExLexer
+        _ -> Makeup.Lexers.ElixirLexer
+      end
+
+    assigns = assign(assigns, lexer: lexer)
+
+    ~H"""
+    <%= raw(Makeup.highlight(@source, lexer: @lexer)) %>
+    """
+  end
+
+  attr :category, :string, default: ""
+  attr :page, :string, default: ""
+  attr :class, :string, default: ""
+  attr :rest, :global
+
+  def navigations(assigns) do
+    assigns = assign(assigns, categories: Documentation.all())
+
+    # TODO: document search
+
+    ~H"""
+    <div class={@class} {@rest}>
+      <div class="hidden lg:block sticky top-0">
+        <div class="py-8">
+          <button class="hidden w-full">Search</button>
+        </div>
+      </div>
+
+      <nav>
+        <ul class="space-y-4">
+          <li>
+            <.category_link current={@category} category="getting-started" title="Getting Started">
+              <:icon>
+                <Heroicons.bolt mini class="w-4 h-4" />
+              </:icon>
+            </.category_link>
+          </li>
+          <li>
+            <.category_link current={@category} category="components" title="Components">
+              <:icon>
+                <Heroicons.squares_2x2 mini class="w-4 h-4" />
+              </:icon>
+            </.category_link>
+          </li>
+          <li>
+            <.category_link current={@category} category="changelog" title="Changelog">
+              <:icon>
+                <Heroicons.document_text mini class="w-4 h-4" />
+              </:icon>
+            </.category_link>
+          </li>
+        </ul>
+
+        <ul class="mt-8 border-l border-slate-900/10 dark:border-neutral-600 space-y-4">
+          <li :for={article <- get_in(@categories, [@category, :articles])}>
+            <a
+              href={"/docs/#{@category}/#{article.slug}"}
+              class="block border-l border-transparent data-[current]:border-emerald-500 pl-4 -ml-px text-sm data-[current]:font-medium data-[current]:text-emerald-500"
+              data-current={@page == article.slug}
+            >
+              <%= article.title %>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+    """
+  end
+
+  attr :current, :string
+  attr :category, :string
+  attr :title, :string
+  slot :icon
+
+  defp category_link(assigns) do
+    ~H"""
+    <a
+      href={"/docs/#{@category}"}
+      class="group flex items-center text-sm font-semibold data-[current]:text-emerald-500 hover:text-slate-900 dark:hover:text-neutral-300"
+      data-current={@current == @category}
+    >
+      <div class={[
+        "inline-flex justify-center items-center text-slate-500 dark:text-neutral-500 group-data-[current]:text-emerald-500",
+        "mr-4 w-7 h-7 rounded-lg border border-slate-900/10 group-hover:border-slate-900/20 dark:shadow-neutral-700/40",
+        "shadow-sm group-hover:shadow dark:border-neutral-700 dark:group-hover:border-neutral-600"
+      ]}>
+        <%= render_slot(@icon) %>
+      </div>
+      <%= @title %>
+    </a>
     """
   end
 

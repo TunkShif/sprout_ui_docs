@@ -1,0 +1,50 @@
+# Switch
+
+A switch is an input component that allows users to choose one of two values: checked or unchecked.
+
+<div>
+  <.switch_example />
+</div>
+
+## Setup
+
+To use the switch component, you'll have to import `Switch` module in your `assets/app.js`.
+
+```js
+import { createSproutConfig, Switch } from "sprout-ui";
+
+const { initComponents, handleDomChange } = createSproutConfig({
+  components: [Switch()],
+});
+```
+
+## Anatomy
+
+```html
+<sp-switch data-state="checked | unchecked">
+  <button data-part="track">
+    <span data-part="thumb"></span>
+  </button>
+</sp-switch>
+```
+
+- **track**: the track for the thumb
+- **thumb**: the thumb used to indicate whether the switch is checked or not
+
+Under the hood, all the slot contents are rendered inside a `sp-switch` custom element.
+
+## Attributes
+
+| Attribute      | Type       | Description                                                  |
+| -------------- | ---------- | ------------------------------------------------------------ |
+| `checked`      | `:boolean` | Whether the switch is checked by default, default to `false` |
+| `on_checked`   | `JS`       | JS commands executed when the switch is checked              |
+| `on_unchecked` | `JS`       | JS commands executed when the switch is unchecked            |
+| `rest`         | `:global`  | Global attributes to be passed to the `sp-switch` element    |
+
+## API
+
+| API           | Description                                   |
+| ------------- | --------------------------------------------- |
+| `track_attrs` | Attributes to be passed to the **track** part |
+| `thumb_attrs` | Attributes to be passed to the **thumb** part |

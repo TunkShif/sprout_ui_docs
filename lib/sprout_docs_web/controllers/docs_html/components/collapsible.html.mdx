@@ -1,0 +1,96 @@
+# Collapsible
+
+A collapsible is an interactive component which expands/collapses a panel.
+
+<div>
+  <.collapsible_example />
+</div>
+
+## Setup
+
+To use the collapsible component, you'll have to import `Collapsible` module in your `assets/app.js`.
+
+```js
+import { createSproutConfig, Collapsible } from "sprout-ui";
+
+const { initComponents, handleDomChange } = createSproutConfig({
+  components: [Collapsible()],
+});
+```
+
+## Anatomy
+
+```html
+<div is="sp-collapsible" data-state="open | closed">
+  <button data-part="trigger"></button>
+  <div data-part="panel">
+    <p>content</p>
+  </div>
+</div>
+```
+
+- **trigger**: the trigger for the collapsible item
+- **panel**: the content area revealed by clicking the trigger
+
+Under the hood the slot content is rendered inside a `sp-collapsible` [customized builtin element](https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements#high-level_view).
+
+## Attributes
+
+| Attribute  | Type       | Description                                                    |
+| ---------- | ---------- | -------------------------------------------------------------- |
+| `open`     | `:boolean` | Open the collapsible by default, default to `false`            |
+| `on_open`  | `JS`       | JS commands executed when collapsible opened                   |
+| `on_close` | `JS`       | JS commands executed when collapsible closed                   |
+| `rest`     | `:global`  | Global attributes to be passed to the `sp-collapsible` element |
+
+## API
+
+| API             | Description                                 |
+| --------------- | ------------------------------------------- |
+| `trigger_attrs` | Attributes to be passed to **trigger** part |
+| `panel_attrs`   | Attributes to be passed to **panel** part   |
+
+## Animation
+
+It's recommended to use CSS animations to animate panel size change when opening/closing.
+
+Unfortunately we cannot simply animate or transition an element from `height: auto;` to `height: 0px;`, because it has to be the actual size of the height of an element. You can access the actual height of the panel element by using `--panel-height` CSS property. (Thanks to [Radix UI](https://www.radix-ui.com/docs/primitives/components/accordion) for this approach).
+
+Here's an example that used in the demo in the beginning:
+
+```js
+.animate-slide-down {
+  animation: slide-down 200ms cubic-bezier(0.87, 0, 0.13, 1);
+}
+
+.animate-slide-up {
+  animation: slide-up 200ms cubic-bezier(0.87, 0, 0.13, 1);
+}
+
+@keyframes slide-down {
+  from {
+    height: 0;
+  }
+  to {
+    height: var(--panel-height);
+  }
+}
+
+@keyframes slide-up {
+  from {
+    height: var(--panel-height);
+  }
+  to {
+    height: 0;
+  }
+}
+```
+
+Then adding corresponding CSS classes to the panel element (here we're using sprout ui tailwind css plugin for styling diffrent states):
+
+```html
+<div
+  class="ui-open:animate-slide-down ui-closed:animate-slide-up"
+  {item.panel_attrs}
+></div>
+```

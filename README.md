@@ -1,5 +1,7 @@
 # Sprout UI Docs
 
+This is the repository for SproutUI website.
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`

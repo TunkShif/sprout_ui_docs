@@ -10,8 +10,8 @@ module.exports = {
     },
     extend: {
       animation: {
-        "slide-down": "slide-down 300ms cubic-bezier(0.87, 0, 0.13, 1)",
-        "slide-up": "slide-up 300ms cubic-bezier(0.87, 0, 0.13, 1)"
+        "slide-down": "slide-down 200ms cubic-bezier(0.87, 0, 0.13, 1)",
+        "slide-up": "slide-up 200ms cubic-bezier(0.87, 0, 0.13, 1)"
       },
       keyframes: {
         "slide-down": {

@@ -12,7 +12,15 @@ defmodule SproutDocs.Documentation do
     "components" => %{
       title: "Components",
       view: SproutDocsWeb.DocsHtml.Components,
-      articles: []
+      articles: [
+        %{slug: "accordion", title: "Accordion"},
+        %{slug: "collapsible", title: "Collapsible"},
+        %{slug: "dialog", title: "Dialog"},
+        %{slug: "popover", title: "Popover"},
+        %{slug: "switch", title: "Switch"},
+        %{slug: "toggle", title: "Toggle"},
+        %{slug: "tooltip", title: "Tooltip"}
+      ]
     },
     "changelog" => %{
       title: "Chanegelog",

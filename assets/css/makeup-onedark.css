@@ -1,19 +1,27 @@
-.highlight .hll {
+.code-display .hll {
   background-color: #49483e;
 }
 
-.highlight {
-  background-color: #1e293b;
+.code-display pre {
+  background-color: #262626;
 }
 
-.dark .highlight {
-  background-color: #171717;
+.dark .code-display pre {
+  background-color: #131313;
 }
 
 .highlight code {
   display: block;
   padding: 16px;
   overflow-x: auto;
+}
+
+.highlight code::-webkit-scrollbar {
+  @apply w-1 h-1;
+}
+
+.highlight code::-webkit-scrollbar-thumb {
+  @apply bg-neutral-400/80 rounded-md;
 }
 
 .highlight .unselectable {

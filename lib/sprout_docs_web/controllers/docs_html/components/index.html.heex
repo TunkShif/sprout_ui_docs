@@ -1,0 +1,9 @@
+<h1>Components</h1>
+
+List of currently available components:
+
+<ul :for={component <- get_in(Documentation.all(), ["components", :articles])}>
+  <li>
+    <a href={"/docs/components/#{component.slug}"}><%= component.title %></a>
+  </li>
+</ul>

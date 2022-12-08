@@ -1,11 +1,13 @@
 # Installation
 
+Currently Sprout UI is not officialy released on hex.pm yet, but you can install it from GitHub repository.
+
 The package can be installed by adding `sprout_ui` to your list of dependencies in `mix.exs`:
 
 ```elixir
 defp deps do
   [
-    {:sprout_ui, "~> 0.1"},
+    {:sprout_ui, git: "https://github.com/TunkShif/sprout_ui"},
   ]
 end
 ```
@@ -53,8 +55,6 @@ You can install it by adding the following config to your `assets/tailwind.confi
 
 ```js
 module.exports = {
-  plugins: [
-    require("sprout-ui/tailwind")
-  ]
-}
+  plugins: [require("sprout-ui/tailwind")],
+};
 ```
